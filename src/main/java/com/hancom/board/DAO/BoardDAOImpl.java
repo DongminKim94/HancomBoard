@@ -27,21 +27,23 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public Board get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Board get(int number) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Board board = currentSession.get(Board.class, number);
+		return board;
 	}
 
 	@Override
 	public void save(Board board) {
-		// TODO Auto-generated method stub
-		
+		Session currentSession = entityManager.unwrap(Session.class);
+		currentSession.saveOrUpdate(board);
 	}
 
 	@Override
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(int number) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Board board = currentSession.get(Board.class, number);
+		currentSession.delete(board);
 	}
 		
 }

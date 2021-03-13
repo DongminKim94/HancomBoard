@@ -7,9 +7,9 @@ import com.hancom.board.model.Board;
 public interface BoardService {
 	List<Board> get();
 	
-	Board get(int id);
+	Board get(int number);
 	
 	void save(Board board);
 	
-	void delete(int id);
+	void delete(int number);
 }
