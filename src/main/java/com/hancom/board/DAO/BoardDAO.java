@@ -11,8 +11,6 @@ public interface BoardDAO {
 	Board get(int number);
 	
 	void save(Board board);
-	
-	void update();
-	
+
 	void delete(int number);
 }
