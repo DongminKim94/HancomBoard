@@ -1,7 +1,5 @@
 package com.hancom.board.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,17 +7,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @Entity
 @Table(name="board")
 public class Board {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="number", nullable=false, updatable=false)
 	private Integer number; //번호
 	
@@ -33,6 +35,13 @@ public class Board {
 	private String content; //본문내용
 	
 	@Column(name="created_date", nullable=false)
-	private Date createdDate; //작성일
+	private String createdDate; //최초 작성일
 	
+	@Column(name="last_modified_date")
+	private String lastModifiedDate; //최근 수정일
+	
+	public Board() {
+		
+	}
+
 }
