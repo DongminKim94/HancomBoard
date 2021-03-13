@@ -24,23 +24,20 @@ public class BoardServiceImpl implements BoardService {
 
 	@Transactional
 	@Override
-	public Board get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Board get(int number) {
+		return boardDAO.get(number);
 	}
 	
 	@Transactional
 	@Override
 	public void save(Board board) {
-		// TODO Auto-generated method stub
-		
+		boardDAO.save(board);
 	}
 
 	@Transactional
 	@Override
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(int number) {
+		boardDAO.delete(number);
 	}
 
 }

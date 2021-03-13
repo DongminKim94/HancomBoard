@@ -8,9 +8,11 @@ public interface BoardDAO {
 	
 	List<Board> get();
 	
-	Board get(int id);
+	Board get(int number);
 	
 	void save(Board board);
 	
-	void delete(int id);
+	void update();
+	
+	void delete(int number);
 }
