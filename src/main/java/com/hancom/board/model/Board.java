@@ -35,6 +35,4 @@ public class Board {
 	@Column(name="created_date", nullable=false)
 	private Date createdDate; //작성일
 	
-	
-	
 }
