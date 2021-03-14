@@ -12,7 +12,6 @@ import com.hancom.board.model.Board;
 @Service
 public class BoardServiceImpl implements BoardService {
 
-	
 	@Autowired
 	private BoardDAO boardDAO;
 	
@@ -39,5 +38,5 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(int number) {
 		boardDAO.delete(number);
 	}
-
+	
 }

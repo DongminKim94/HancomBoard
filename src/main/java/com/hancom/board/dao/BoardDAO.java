@@ -13,4 +13,5 @@ public interface BoardDAO {
 	void save(Board board);
 
 	void delete(int number);
+	
 }

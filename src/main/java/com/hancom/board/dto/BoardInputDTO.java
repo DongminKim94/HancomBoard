@@ -13,5 +13,6 @@ public class BoardInputDTO {
 	
 	private String author;
 	
-	private String contet;
+	private String content;
+	
 }

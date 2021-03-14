@@ -44,6 +44,6 @@ public class BoardDAOImpl implements BoardDAO {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Board board = currentSession.get(Board.class, number);
 		currentSession.delete(board);
-	}
-		
+	}	
+	
 }
