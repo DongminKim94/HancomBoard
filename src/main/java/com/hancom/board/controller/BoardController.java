@@ -93,6 +93,11 @@ public class BoardController {
 	@PutMapping("/board")
 	public Board update(@RequestBody Board board) {
 		
+		//수정을 원할 때 필수 작성 항목인 제목이나 작성자가 기입되어있지 않을 경우 RuntimeException을 발생시킨다.
+		if(board.getTitle() == null || board.getAuthor() == null) {
+			throw new RuntimeException("필수 작성 항목을 채우지않아 게시물을 수정할 수 없습니다.");
+		}
+		
 		Board originBoard = boardService.get(board.getNumber());
 		
 		//수정하고자 하는 번호의 게시물이 없을 경우에는 RuntimeException을 발생시킨다.
