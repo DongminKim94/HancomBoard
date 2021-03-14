@@ -17,7 +17,7 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any()) //현재 RequestMapping으로 할당된 모든 URL 추출
-                .paths(PathSelectors.ant("/hancom/board/**")) //그중 RequestMapping이 "/hancom/board/**"인 URL들만 필터링
+                .paths(PathSelectors.ant("/hancom/board/**")) //그중 RequestMapping이 "/hancom/board/**"인 URL들만 필터링하여 UI에 보여줌
                 .build();
     }
 }
