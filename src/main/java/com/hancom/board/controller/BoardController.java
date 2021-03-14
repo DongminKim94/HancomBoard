@@ -40,15 +40,19 @@ public class BoardController {
 		
 		//데이터베이스에 저장되어있는 모든 레코드를 boardList에 가져온 뒤 그 리스트의 각 요소들의 본문내용과 최신 수정일 필드를 제외하고 새로운 리스트를 만들어 반환해준다. 
 		boardList.forEach(e -> {
-			boardOutputDTOList.add(BoardOutputDTO.builder().number(e.getNumber()).title(e.getTitle())
-					.author(e.getAuthor()).createdDate(e.getCreatedDate()).build());
+			boardOutputDTOList.add(BoardOutputDTO.builder()
+					.number(e.getNumber())
+					.title(e.getTitle())
+					.author(e.getAuthor())
+					.createdDate(e.getCreatedDate())
+					.build());
 		});
 			
 		return boardOutputDTOList;
 	}
 	
 	//상세보기
-	@ApiOperation(value = "조회", notes = "게시판의 특정 게시물을 조회한다. 해당 API는 게시물의 모든 정보를 제공한다.")
+	@ApiOperation(value = "상세보기", notes = "게시판의 특정 게시물을 조회한다. 해당 API는 게시물의 모든 정보를 제공한다.")
 	@GetMapping("/board/{number}")
 	public Board get(@PathVariable int number) {
 		
@@ -76,8 +80,12 @@ public class BoardController {
 		SimpleDateFormat createdSimpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		
 		//BoardDTO에서 Board 모델로 변경하는 작업
-		Board board = Board.builder().title(boardDTO.getTitle()).author(boardDTO.getAuthor()).content(boardDTO.getContent())
-				.createdDate(createdSimpleDate.format(new Date()).toString()).build();
+		Board board = Board.builder()
+				.title(boardDTO.getTitle())
+				.author(boardDTO.getAuthor())
+				.content(boardDTO.getContent())
+				.createdDate(createdSimpleDate.format(new Date()).toString())
+				.build();
 		boardService.save(board);
 		
 		return board;
