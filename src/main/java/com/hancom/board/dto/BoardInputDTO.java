@@ -1,4 +1,4 @@
-package com.hancom.board.DTO;
+package com.hancom.board.dto;
 
 import lombok.Getter;
 import lombok.Setter;

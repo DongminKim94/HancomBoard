@@ -1,4 +1,4 @@
-package com.hancom.board.DAO;
+package com.hancom.board.dao;
 
 import java.util.List;
 

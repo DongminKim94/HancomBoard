@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hancom.board.DTO.BoardInputDTO;
-import com.hancom.board.DTO.BoardOutputDTO;
+import com.hancom.board.dto.BoardInputDTO;
+import com.hancom.board.dto.BoardOutputDTO;
 import com.hancom.board.model.Board;
 import com.hancom.board.service.BoardService;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/hancom")
@@ -28,6 +30,7 @@ public class BoardController {
 	private BoardService boardService;
 	
 	//목록
+	@ApiOperation(value = "목록", notes = "게시판의 전체 목록을 조회한다. 해당 API는 게시물 번호, 제목, 작성자, 최초 작성일의 정보만 제공한다.")
 	@GetMapping("/board")
 	public List<BoardOutputDTO> get(){
 		
@@ -44,6 +47,7 @@ public class BoardController {
 	}
 	
 	//상세보기
+	@ApiOperation(value = "조회", notes = "게시판의 특정 게시물을 조회한다. 해당 API는 게시물의 모든 정보를 제공한다.")
 	@GetMapping("/board/{number}")
 	public Board get(@PathVariable int number) {
 		
@@ -57,6 +61,7 @@ public class BoardController {
 	}
 	
 	//입력
+	@ApiOperation(value = "입력", notes = "게시판에 새로운 게시물을 만든다. 해당 API는 유저가 게시물의 제목, 작성자, 본문 내용을 작성하고 서버에 전송해 줄 수 있다.")
 	@PostMapping("/board")
 	public Board save(@RequestBody BoardInputDTO boardDTO) {
 		
@@ -72,9 +77,12 @@ public class BoardController {
 	}
 	
 	//수정
-	//수정시에는 RequestBody에 Board 모델 클래스를 받아 수정하고자하는 게시물의 번호(기본키)를 알아내야 한다. 
-	//그러나 이러한 경우에는 유저가 임의로 변경하면 안되는 정보(번호, 최초 작성일)를 변경하여 보낼 수도 있다.
-	//따라서 이러한 문제를 해결하기 위해 해당 메소드에서 먼저 게시물의 번호가 동일한 객체를 가져온 뒤 변경할 정보들만 변경해주는 작업을 한 뒤 데이터베이스에 저장해주는 방식으로 구현하였다. 
+	//수정 시에는 RequestBody에 Board 모델 클래스를 받아 수정하고자하는 게시물의 번호(기본키)를 알아내야 한다.
+	//그러나 이러한 경우에는 유저가 임의로 변경하면 안되는 정보(번호, 최초 작성일, 최근 수정일)를 변경하여 보낼 수도 있다.
+	//따라서 이러한 문제를 해결하기 위해 해당 메소드에서 먼저 게시물의 번호가 동일한 객체를 가져온 뒤 변경할 정보들만 변경해주는 작업을 한 뒤 데이터베이스에 저장해주는 방식으로 구현하였다.
+	//(프론트엔드 단에서 미리 방지해 줄 수도 있겠지만 백엔드는 프론트엔드에서 어떤 정보가 올지 모르기에 모든 상황을 고려해서 로직을 작성해야한다고 배웠기에 아래와 같이 로직을 구성하였다.)
+	@ApiOperation(value = "수정", notes = "게시판에 존재하던 게시물의 내용을 수정한다. 해당 API는 유저가 보내지 말아야할 정보(게시물 번호, 최초 작성일, 최근 수정일)를 보내더라도"
+			+ "백엔드 단에서 수정 가능한 정보만 변경하여 데이터베이스에 저장한다.")
 	@PutMapping("/board")
 	public Board update(@RequestBody Board board) {
 		
@@ -98,6 +106,7 @@ public class BoardController {
 	}
 	
 	//삭제
+	@ApiOperation(value = "삭제", notes = "게시판의 특정 게시물을 삭제한다. 해당 API는 특정 게시물 삭제가 잘 되었는지 결과를 리턴해준다.")
 	@DeleteMapping("/board/{number}")
 	public String delete(@PathVariable int number) {
 		
