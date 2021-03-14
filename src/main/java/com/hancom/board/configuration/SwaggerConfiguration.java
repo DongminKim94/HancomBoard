@@ -26,7 +26,7 @@ public class SwaggerConfiguration {
     }
     
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("Hancom Board API Doc.").version("1.0.0").description("한글과컴퓨터 Back End 개발 부문 직무 능력 테스트인 게시판 만들기 REST API Doc.입니다.").build();
+		return new ApiInfoBuilder().title("한글과컴퓨터 게시판 API Docs").version("1.0.0").description("한글과컴퓨터 Back End 개발 부문 직무 능력 테스트인 게시판 만들기 RESTful API 문서입니다.").build();
 	}
 	
 }
