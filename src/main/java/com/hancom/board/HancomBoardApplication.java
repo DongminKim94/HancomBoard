@@ -11,5 +11,5 @@ public class HancomBoardApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HancomBoardApplication.class, args);
 	}
-
+	
 }
